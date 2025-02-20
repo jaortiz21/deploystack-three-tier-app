@@ -8,7 +8,6 @@ provider "google" {
 
 terraform {
   backend "gcs" {
-    backend = var.state_bucket
-    prefix = var.project_id
+    
   }
 }

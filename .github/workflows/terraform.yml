@@ -61,7 +61,8 @@ jobs:
 
     env:
       TF_VAR_gcp_creds: "${{ secrets.GCP_CREDENTIALS }}"
-      TF_VAR_state_bucket: "${{ secrets.STATE_BUCKET }}"
+      state_bucket: "${{ secrets.STATE_BUCKET }}"
+      project_id: "ordinal-motif-450819-v8"
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -90,7 +91,7 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: cd terraform && terraform init
+      run: cd terraform && terraform init  -backend-config="bucket=$state_bucket" -backend-config="prefix=$project_id"
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan

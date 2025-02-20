@@ -40,10 +40,6 @@ variable "gcp_creds" {
   type = string
 }
 
-variable "state_bucket" {
-  type = string
-}
-
 locals {
   sabuild = "${var.project_number}@cloudbuild.gserviceaccount.com"
 }
