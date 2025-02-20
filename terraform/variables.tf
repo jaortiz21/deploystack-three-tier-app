@@ -36,6 +36,10 @@ variable "basename" {
   type = string
 }
 
+variable "gcp_creds" {
+  type = string
+}
+
 locals {
   sabuild = "${var.project_number}@cloudbuild.gserviceaccount.com"
 }
