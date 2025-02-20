@@ -61,6 +61,7 @@ jobs:
 
     env:
       TF_VAR_gcp_creds: "${{ secrets.GCP_CREDENTIALS }}"
+      TF_VAR_state_bucket: "${{ secrets.STATE_BUCKET }}"
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
