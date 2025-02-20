@@ -21,7 +21,6 @@ data "google_project" "project" {
   project_id = var.project_id
 }
 
-
 resource "google_project_service" "all" {
   for_each           = toset(var.gcp_service_list)
   project            = var.project_number
@@ -42,7 +41,7 @@ variable "build_roles_list" {
     "roles/artifactregistry.admin",
   ]
 }
-
+/*
 resource "google_service_account" "runsa" {
   project      = var.project_number
   account_id   = "${var.basename}-run-sa"
@@ -323,3 +322,4 @@ resource "google_cloud_run_service_iam_member" "noauth_fe" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
+*/
