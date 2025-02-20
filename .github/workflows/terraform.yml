@@ -79,12 +79,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     
-    - name: 'Set up Cloud SDK'
-      uses: 'google-github-actions/setup-gcloud@v2'
-  
-    - name: 'Use gcloud CLI'
-      run: 'gcloud info'
-
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
@@ -95,6 +89,9 @@ jobs:
           -backend-config="bucket=$state_bucket" \
           -backend-config="prefix=$project_id" \
           -backend-config="bucket=$state_bucket"
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v2'
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
