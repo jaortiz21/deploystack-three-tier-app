@@ -93,6 +93,8 @@ jobs:
 
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v2'
+      env:
+        credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
