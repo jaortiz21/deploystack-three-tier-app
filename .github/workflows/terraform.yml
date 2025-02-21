@@ -84,7 +84,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Move Terraform code
-      uses: mv terraform/* .
+      run: mv terraform/* .
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
