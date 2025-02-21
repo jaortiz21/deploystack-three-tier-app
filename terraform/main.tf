@@ -41,9 +41,9 @@ variable "build_roles_list" {
     "roles/artifactregistry.admin",
   ]
 }
-/*
+
 resource "google_service_account" "runsa" {
-  project      = var.project_number
+  project      = var.project_id
   account_id   = "${var.basename}-run-sa"
   display_name = "Service Account Three Tier App on Cloud Run"
 }
@@ -55,16 +55,14 @@ resource "google_project_iam_member" "allrun" {
   depends_on = [google_project_service.all]
 }
 
-
 resource "google_project_iam_member" "allbuild" {
   for_each   = toset(var.build_roles_list)
-  project    = var.project_number
+  project    = var.project_id
   role       = each.key
   member     = "serviceAccount:${local.sabuild}"
   depends_on = [google_project_service.all]
 }
-
-
+/*
 resource "google_compute_network" "main" {
   provider                = google-beta
   name                    = "${var.basename}-private-network"
@@ -166,7 +164,7 @@ resource "google_artifact_registry_repository" "todo_app" {
 
 # Handle secrets
 resource "google_secret_manager_secret" "redishost" {
-  project = var.project_number
+  project = var.project_id
   replication {
     automatic = true
   }
@@ -176,13 +174,13 @@ resource "google_secret_manager_secret" "redishost" {
 
 resource "google_secret_manager_secret_version" "redishost" {
   enabled     = true
-  secret      = "projects/${var.project_number}/secrets/redishost"
+  secret      = "projects/${var.project_id}/secrets/redishost"
   secret_data = google_redis_instance.main.host
   depends_on  = [google_project_service.all, google_redis_instance.main, google_secret_manager_secret.redishost]
 }
 
 resource "google_secret_manager_secret" "sqlhost" {
-  project = var.project_number
+  project = var.project_id
   replication {
     automatic = true
   }
@@ -192,7 +190,7 @@ resource "google_secret_manager_secret" "sqlhost" {
 
 resource "google_secret_manager_secret_version" "sqlhost" {
   enabled     = true
-  secret      = "projects/${var.project_number}/secrets/sqlhost"
+  secret      = "projects/${var.project_id}/secrets/sqlhost"
   secret_data = google_sql_database_instance.main.private_ip_address
   depends_on  = [google_project_service.all, google_sql_database_instance.main, google_secret_manager_secret.sqlhost]
 }

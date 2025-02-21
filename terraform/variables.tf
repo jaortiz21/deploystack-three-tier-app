@@ -41,7 +41,7 @@ variable "gcp_creds" {
 }
 
 locals {
-  sabuild = "${var.project_number}@cloudbuild.gserviceaccount.com"
+  sabuild = "${var.project_id}@cloudbuild.gserviceaccount.com"
 }
 
 # Handle services
