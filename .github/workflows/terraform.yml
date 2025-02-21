@@ -85,10 +85,7 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: cd terraform && terraform init \
-          -backend-config="bucket=$state_bucket" \
-          -backend-config="prefix=$project_id" \
-          -backend-config="bucket=$state_bucket"
+      run: cd terraform && terraform init -backend-config="bucket=$state_bucket" -backend-config="prefix=$project_id" -backend-config="bucket=$state_bucket"
 
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v2'
