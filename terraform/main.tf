@@ -59,7 +59,7 @@ resource "google_project_iam_member" "allbuild" {
   for_each   = toset(var.build_roles_list)
   project    = var.project_id
   role       = each.key
-  member     = "serviceAccount:${local.sabuild}"
+  member     = "serviceAccount:${google_service_account.runsa.email}"
   depends_on = [google_project_service.all]
 }
 /*
