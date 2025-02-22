@@ -106,5 +106,4 @@ jobs:
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Currently disabled on push
     - name: Terraform Apply
-      if: github.ref_name == 'main'
       run: terraform apply -auto-approve -input=false planfile
