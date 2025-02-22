@@ -100,7 +100,7 @@ resource "google_vpc_access_connector" "main" {
   max_throughput = 300
   depends_on     = [google_compute_global_address.main, google_project_service.all]
 }
-/*
+
 resource "random_id" "id" {
   byte_length = 2
 }
@@ -136,7 +136,7 @@ resource "google_sql_database_instance" "main" {
     command     = "./load_schema.sh ${var.project_id} ${google_sql_database_instance.main.name}"
   }
 }
-
+/*
 # Handle redis instance
 resource "google_redis_instance" "main" {
   authorized_network      = google_compute_network.main.id
