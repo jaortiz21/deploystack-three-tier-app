@@ -5,7 +5,7 @@ gcloud info
 SQLSERVICEACCOUNT=$(gcloud sql instances describe $SQLNAME --project $PROJECT --format="value(serviceAccountEmailAddress)" | xargs)
 gcloud storage buckets create gs://$PROJECT-temp --uniform-bucket-level-access
 #gsutil mb gs://$PROJECT-temp 
-gcloud storage cp schema.ql gs://$PROJECT-temp
+gcloud storage cp schema.sql gs://$PROJECT-temp
 #gsutil cp schema.sql gs://$PROJECT-temp/schema.sql
 #gcloud storage buckets add-iam-policy-binding gs://$PROJECT-temp --member=allUsers --role=roles/storage.objectViewer
 gcloud storage ls gs://$PROJECT-temp
