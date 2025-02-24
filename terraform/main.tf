@@ -277,7 +277,7 @@ resource "google_cloud_run_service" "api" {
 
 resource "null_resource" "cloudbuild_fe" {
   provisioner "local-exec" {
-    working_dir = "${path.module}/../code/frontend"
+    working_dir = "${path.module}/code/frontend"
     command     = "gcloud builds submit . --substitutions=_REGION=${var.region},_BASENAME=${var.basename}"
   }
 
@@ -286,7 +286,7 @@ resource "null_resource" "cloudbuild_fe" {
     google_cloud_run_service.api
   ]
 }
-/*
+
 resource "google_cloud_run_service" "fe" {
   name     = "${var.basename}-fe"
   location = var.region
@@ -321,4 +321,3 @@ resource "google_cloud_run_service_iam_member" "noauth_fe" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
-*/
