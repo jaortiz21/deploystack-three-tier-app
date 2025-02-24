@@ -275,7 +275,7 @@ resource "google_cloud_run_service" "api" {
   ]
 }
 
-resource "null_resource" "cloudbuild_fe" {
+/*resource "null_resource" "cloudbuild_fe" {
   provisioner "local-exec" {
     working_dir = "${path.module}/code/frontend"
     command     = "gcloud builds submit . --substitutions=_REGION=${var.region},_BASENAME=${var.basename}"
@@ -305,7 +305,7 @@ resource "google_cloud_run_service" "fe" {
   }
   depends_on = [null_resource.cloudbuild_fe]
 }
-
+*/
 resource "google_cloud_run_service_iam_member" "noauth_api" {
   location = google_cloud_run_service.api.location
   project  = google_cloud_run_service.api.project
@@ -313,7 +313,7 @@ resource "google_cloud_run_service_iam_member" "noauth_api" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
-
+/*
 resource "google_cloud_run_service_iam_member" "noauth_fe" {
   location = google_cloud_run_service.fe.location
   project  = google_cloud_run_service.fe.project
@@ -321,3 +321,4 @@ resource "google_cloud_run_service_iam_member" "noauth_fe" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
+*/
