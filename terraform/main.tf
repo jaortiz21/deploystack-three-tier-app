@@ -195,10 +195,10 @@ resource "google_secret_manager_secret_version" "sqlhost" {
   secret_data = google_sql_database_instance.main.private_ip_address
   depends_on  = [google_project_service.all, google_sql_database_instance.main, google_secret_manager_secret.sqlhost]
 }
-/*
+
 resource "null_resource" "cloudbuild_api" {
   provisioner "local-exec" {
-    working_dir = "${path.module}/../code/middleware"
+    working_dir = "${path.module}/code/middleware"
     command     = "gcloud builds submit . --substitutions=_REGION=${var.region},_BASENAME=${var.basename}"
   }
 
@@ -209,7 +209,7 @@ resource "null_resource" "cloudbuild_api" {
     google_project_service.all
   ]
 }
-
+/*
 resource "google_cloud_run_service" "api" {
   name     = "${var.basename}-api"
   location = var.region
