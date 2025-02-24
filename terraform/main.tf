@@ -136,7 +136,7 @@ resource "google_sql_database_instance" "main" {
     command     = "./load_schema.sh ${var.project_id} ${google_sql_database_instance.main.name}"
   }
 }
-/*
+
 # Handle redis instance
 resource "google_redis_instance" "main" {
   authorized_network      = google_compute_network.main.id
@@ -155,7 +155,7 @@ resource "google_redis_instance" "main" {
 
 # Handle artifact registry
 resource "google_artifact_registry_repository" "todo_app" {
-  provider      = google-beta
+  #provider      = google-beta
   format        = "DOCKER"
   location      = var.region
   project       = var.project_id
@@ -167,7 +167,7 @@ resource "google_artifact_registry_repository" "todo_app" {
 resource "google_secret_manager_secret" "redishost" {
   project = var.project_id
   replication {
-    automatic = true
+    auto {}
   }
   secret_id  = "redishost"
   depends_on = [google_project_service.all]
@@ -183,7 +183,7 @@ resource "google_secret_manager_secret_version" "redishost" {
 resource "google_secret_manager_secret" "sqlhost" {
   project = var.project_id
   replication {
-    automatic = true
+    auto {}
   }
   secret_id  = "sqlhost"
   depends_on = [google_project_service.all]
@@ -195,7 +195,7 @@ resource "google_secret_manager_secret_version" "sqlhost" {
   secret_data = google_sql_database_instance.main.private_ip_address
   depends_on  = [google_project_service.all, google_sql_database_instance.main, google_secret_manager_secret.sqlhost]
 }
-
+/*
 resource "null_resource" "cloudbuild_api" {
   provisioner "local-exec" {
     working_dir = "${path.module}/../code/middleware"
