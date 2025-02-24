@@ -209,7 +209,7 @@ resource "null_resource" "cloudbuild_api" {
     google_project_service.all
   ]
 }
-/*
+
 resource "google_cloud_run_service" "api" {
   name     = "${var.basename}-api"
   location = var.region
@@ -286,7 +286,7 @@ resource "null_resource" "cloudbuild_fe" {
     google_cloud_run_service.api
   ]
 }
-
+/*
 resource "google_cloud_run_service" "fe" {
   name     = "${var.basename}-fe"
   location = var.region
