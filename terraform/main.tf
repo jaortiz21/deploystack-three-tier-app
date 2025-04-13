@@ -20,14 +20,14 @@
 data "google_project" "project" {
   project_id = var.project_id
 }
-/*
+
 resource "google_project_service" "all" {
   for_each           = toset(var.gcp_service_list)
   project            = var.project_id
   service            = each.key
   disable_on_destroy = false
 }
-
+/*
 # Handle Permissions
 variable "build_roles_list" {
   description = "The list of roles that build needs for"
@@ -84,7 +84,7 @@ resource "google_compute_global_address" "main" {
 resource "google_service_networking_connection" "main" {
   network                 = google_compute_network.main.id
   service                 = "servicenetworking.googleapis.com"
-  reserved_peering_ranges = [google_compute_global_address.main.name]
+  reserved_peering_ranges = []#[google_compute_global_address.main.name]
   depends_on              = [google_project_service.all]
 }
 /*
