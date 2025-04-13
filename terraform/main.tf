@@ -16,7 +16,7 @@
 
 
 
-
+/*
 data "google_project" "project" {
   project_id = var.project_id
 }
@@ -321,3 +321,4 @@ resource "google_cloud_run_service_iam_member" "noauth_fe" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
+*/
