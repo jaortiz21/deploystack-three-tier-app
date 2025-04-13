@@ -16,7 +16,7 @@
 
 
 
-/*
+
 data "google_project" "project" {
   project_id = var.project_id
 }
@@ -27,7 +27,7 @@ resource "google_project_service" "all" {
   service            = each.key
   disable_on_destroy = false
 }
-
+/*
 # Handle Permissions
 variable "build_roles_list" {
   description = "The list of roles that build needs for"
@@ -81,14 +81,14 @@ resource "google_compute_global_address" "main" {
   project       = var.project_id
   depends_on    = [google_project_service.all]
 }
-
+*/
 resource "google_service_networking_connection" "main" {
   network                 = google_compute_network.main.id
   service                 = "servicenetworking.googleapis.com"
   reserved_peering_ranges = [google_compute_global_address.main.name]
   depends_on              = [google_project_service.all]
 }
-
+/*
 resource "google_vpc_access_connector" "main" {
   #provider       = google-beta
   project        = var.project_id
