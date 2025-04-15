@@ -62,7 +62,7 @@ resource "google_project_iam_member" "allbuild" {
   member     = "serviceAccount:${google_service_account.runsa.email}"
   depends_on = [google_project_service.all]
 }
-*/
+
 resource "google_compute_network" "main" {
   #provider                = google-beta
   name                    = "${var.basename}-private-network"
@@ -84,10 +84,10 @@ resource "google_compute_global_address" "main" {
 resource "google_service_networking_connection" "main" {
   network                 = google_compute_network.main.id
   service                 = "servicenetworking.googleapis.com"
-  reserved_peering_ranges = []#[google_compute_global_address.main.name]
+  reserved_peering_ranges = [google_compute_global_address.main.name]
   depends_on              = [google_project_service.all]
 }
-/*
+
 resource "google_vpc_access_connector" "main" {
   #provider       = google-beta
   project        = var.project_id
