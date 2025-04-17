@@ -38,6 +38,7 @@ variable "basename" {
 
 variable "gcp_creds" {
   type = string
+  default = ""
 }
 
 locals {

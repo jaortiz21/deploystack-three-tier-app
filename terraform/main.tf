@@ -20,7 +20,7 @@
 data "google_project" "project" {
   project_id = var.project_id
 }
-/*
+
 resource "google_project_service" "all" {
   for_each           = toset(var.gcp_service_list)
   project            = var.project_id
@@ -320,4 +320,4 @@ resource "google_cloud_run_service_iam_member" "noauth_fe" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
-*/
+

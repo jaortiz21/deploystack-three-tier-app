@@ -3,7 +3,7 @@ provider "google" {
   region = var.region
   zone = var.zone
 
-  credentials = var.gcp_creds
+  #credentials = var.gcp_creds
 }
 
 terraform {
